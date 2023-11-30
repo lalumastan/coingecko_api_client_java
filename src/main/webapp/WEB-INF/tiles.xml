@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+    <definition name="template.screen" template="/WEB-INF/content/layout/template.jsp">
+        <put-attribute name="page-title" value="iCS Discover's File Upload Test"/>
+        <put-attribute name="page-header" value="/WEB-INF/content/layout/header.jsp"/>
+        <put-attribute name="page-body" value=""/>
+        <put-attribute name="page-footer" value="/WEB-INF/content/layout/footer.jsp"/>
+    </definition>
+    <definition name="coingecko.screen" extends="template.screen">
+        <put-attribute name="page-title" value="iCS Discover's File Upload Test"/>
+        <put-attribute name="page-body" value="/WEB-INF/content/coingecko.jsp"/>
+    </definition>   
+</tiles-definitions>

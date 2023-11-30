@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.i18n.reload" value="true" />
+	<constant name="struts.enable.DynamicMethodInvocation"
+		value="false" />
+	<constant name="struts.convention.action.packages"
+		value="icsdiscover.coingecko" />
+	<constant name="struts.convention.default.parent.package"
+		value="json-default" />
+	<package name="coingecko_api_client_java"
+		extends="struts-default,tiles-default,json-default"
+		strict-method-invocation="false">
+		<interceptors>
+			<interceptor-stack name="appDefaultStack">
+				<interceptor-ref name="defaultStack">
+					<param name="csp.disabled">true</param>
+				</interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref
+			name="appDefaultStack" />
+		<action name="*FileUploadTest"
+			class="icsdiscover.coingecko.CoinGeckoAction" method="{1}">
+			<result name="success" type="tiles">coingecko.screen</result>
+		</action>
+		<action name="getCoingecko"
+			class="icsdiscover.coingecko.CoinGeckoAction">
+			<result name="success" type="json" />
+		</action>
+	</package>
+</struts>
