@@ -1,4 +1,4 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%
-  response.sendRedirect("FileUploadTest.action");
+  response.sendRedirect("CoinGecko.action");
 %>
