@@ -18,7 +18,7 @@
 <link href="/coingecko_api_client_java/css/site.css" rel="stylesheet"/>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>   
 <s:head />
-<sj:head jqueryui="true" jquerytheme="start"/>
+<sj:head jqueryui="true" jquerytheme="redmond"/>
 </head>
 <body background="https://aiweb-icsdiscover.vercel.app/images/ai.jpg">
 	<div>

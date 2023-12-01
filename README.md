@@ -35,9 +35,9 @@ E -- Test with<br/>InternetBrowser --> H{http://localhost:8080/coingecko_api_cli
 
 <li>Download Open JDK 19<a href="https://jdk.java.net/java-se-ri/19" target="_new">here</a> and install</li>
 
-<li>Download Eclipse JEE IDE <a href="https://www.eclipse.org/downloads/packages/release/2022-12/r/eclipse-ide-enterprise-java-and-web-developers" target="_new">here</a>, configure JDK and install</li>
-
 <li>Download and Unzip Apache Tomcat 9 <a href="https://tomcat.apache.org/download-90.cgi" target="_new">here</a>, Add as a Server in Eclipse JEE IDE</li>
+
+<li>Download Eclipse JEE IDE <a href="https://www.eclipse.org/downloads/packages/release/2022-12/r/eclipse-ide-enterprise-java-and-web-developers" target="_new">here</a>, configure JDK and install</li>
 
 <li>Checkout <a href="https://github.com/lalumastan/coingecko_api_client_java.git">this code</a> from Github</li>
 
@@ -77,4 +77,4 @@ E -- Test with<br/>InternetBrowser --> H{http://localhost:8080/coingecko_api_cli
 
 ### Tutorial
 
-<a href="http://www.youtube.com/watch?feature=player_embedded&v=Eg7Ag8zkjN8" target="_blank"><img src="http://img.youtube.com/vi/Eg7Ag8zkjN8/0.jpg" alt="How to Create Simple Crypto Market Watch Web Application and Deploy it Vercel using CoinGecko API, CDN DataTable & Next JS" width="240" height="180" border="10" /></a>
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=7gzDeE9WerE" target="_blank"><img src="http://img.youtube.com/vi/7gzDeE9WerE/0.jpg" alt="How to Create Simple Crypto Market Watch Web Application and Deploy it Vercel using CoinGecko API, CDN DataTable & Next JS" width="240" height="180" border="10" /></a>

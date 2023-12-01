@@ -5,7 +5,7 @@
 
                     <div class="row bg-success border border-success my-0 py-2 rounded-top">
                         <h3 class="text-center text-white">
-                           <s:property value="message" escapeHtml="false"/> <span class="fs-6" id="countDown"></span><!-- {process.env.title} <span class="fs-6">({isLoading ? <span>Refreshing now ...</span> : <span>Refreshing in {counter} seconds</span>})</span>  -->                            
+                           <s:property value="message" escapeHtml="false"/> <span class="fs-6" id="countDown"></span>                            
                         </h3>
                     </div>
                     <div>
