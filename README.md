@@ -71,7 +71,7 @@ E -- Test with<br/>InternetBrowser --> H{http://localhost:8080/coingecko_api_cli
 
 <li><a href="https://getbootstrap.com/docs/5.3/getting-started/introduction/">Bootstrap Tutorial</a></li>
 
-<li><a href="https://www.coingecko.com/api/documentation">CoinGecko API Documentation</a></li>
+<li><a  href="https://www.coingecko.com/en/api">CoinGecko API (Use referral code CGICSDISCOVER):</a></li>
 
 </ul>
 
