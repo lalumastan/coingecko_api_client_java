@@ -13,8 +13,8 @@
         <maven.compiler.source>16</maven.compiler.source>
         <maven.compiler.target>16</maven.compiler.target>
 
-        <struts2.version>6.3.0.1</struts2.version>
-        <log4j2.version>2.20.0</log4j2.version>
+        <struts2.version>6.3.0.2</struts2.version>
+        <log4j2.version>2.22.1</log4j2.version>
         <struts2.jquery.version>5.0.3</struts2.jquery.version>
     </properties>
 
@@ -78,7 +78,6 @@
             <groupId>org.apache.struts</groupId>
             <artifactId>struts2-junit-plugin</artifactId>
             <version>${struts2.version}</version>
-            <scope>test</scope>
         </dependency>
 
         <dependency>
@@ -96,7 +95,6 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.13.1</version>
-            <scope>test</scope>
         </dependency>
 
         <dependency>
@@ -115,8 +113,13 @@
 
     </dependencies>
 
-    <build>
+    <build>	
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>4.0.0-M13</version>
+            </plugin>
 			<plugin>
 			    <groupId>org.apache.maven.plugins</groupId>
 			    <artifactId>maven-war-plugin</artifactId>
@@ -143,5 +146,5 @@
                 </configuration>
             </plugin>
         </plugins>
-    </build>
+    </build>  
 </project>

@@ -32,7 +32,7 @@ public class CoinGeckoAction extends ActionSupport {
 	@SuppressWarnings("compatibility:8655046138357228857")
 	private static final long serialVersionUID = 1L;
 
-	public static final String MESSAGE = "coingecko.message";
+	public static final String MESSAGE = "coingecko.message";	
 
 	/**
 	 * Field for Message property.
