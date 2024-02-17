@@ -33,7 +33,7 @@ E -- Test with<br/>InternetBrowser --> H{http://localhost:8080/coingecko_api_cli
 
 <ul>
 
-<li>Download Open JDK 19<a href="https://jdk.java.net/java-se-ri/19" target="_new">here</a> and install</li>
+<li>Download Open JDK 19 <a href="https://jdk.java.net/java-se-ri/19" target="_new">here</a> and install</li>
 
 <li>Download and Unzip Apache Tomcat 9 <a href="https://tomcat.apache.org/download-90.cgi" target="_new">here</a>, Add as a Server in Eclipse JEE IDE</li>
 
