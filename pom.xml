@@ -114,24 +114,22 @@
     </dependencies>
 
     <build>	
-        <sourceDirectory>${basedir}/src/main/java</sourceDirectory>
-        <testSourceDirectory>${basedir}/src/test/java</testSourceDirectory>    
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-site-plugin</artifactId>
                 <version>4.0.0-M13</version>
             </plugin>
-			<plugin>
-			    <groupId>org.apache.maven.plugins</groupId>
-			    <artifactId>maven-war-plugin</artifactId>
-			    <version>3.3.1</version>
-			</plugin>
-			<plugin>
-			      <groupId>org.apache.maven.plugins</groupId>
-			      <artifactId>maven-compiler-plugin</artifactId>
-			      <version>3.8.1</version>
-			</plugin>			
+     	    <plugin>
+	        <groupId>org.apache.maven.plugins</groupId>
+ 	    	<artifactId>maven-war-plugin</artifactId>
+	    	<version>3.3.1</version>
+	    </plugin>
+	    <plugin>
+	      	<groupId>org.apache.maven.plugins</groupId>
+	      	<artifactId>maven-compiler-plugin</artifactId>
+	      	<version>3.8.1</version>
+	    </plugin>
             <plugin>
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
