@@ -55,23 +55,23 @@ E -- Test with<br/>InternetBrowser --> H{http://localhost:8080/coingecko_api_cli
 
 <ul>
 
-<li><a href="https://openjdk.org/">Open JDK</a></li>
+<li><a href="https://openjdk.org/" target="_new">Open JDK</a></li>
 
-<li><a href="https://www.eclipse.org/downloads/packages/release/2022-12/r/eclipse-ide-enterprise-java-and-web-developers">Eclipse JEE IDE</a></li>
+<li><a href="https://www.eclipse.org/downloads/packages/release/2022-12/r/eclipse-ide-enterprise-java-and-web-developers" target="_new">Eclipse JEE IDE</a></li>
 
-<li><a href="https://struts.apache.org/getting-started/">Struts2 Tutorial</a></li>
+<li><a href="https://struts.apache.org/getting-started/" target="_new">Struts2 Tutorial</a></li>
 
-<li><a href="https://struts.jgeppert.com/struts2-jquery-showcase">Struts2 jQuery Plugin  Showcase</a></li>
+<li><a href="https://struts.jgeppert.com/struts2-jquery-showcase" target="_new">Struts2 jQuery Plugin  Showcase</a></li>
 
-<li><a href="https://www.w3schools.com/html/">HTML Tutorial</a></li>
+<li><a href="https://www.w3schools.com/html/" target="_new">HTML Tutorial</a></li>
 
-<li><a href="https://www.w3schools.com/css/">CSS Tutorial</a></li>
+<li><a href="https://www.w3schools.com/css/" target="_new">CSS Tutorial</a></li>
 
-<li><a href="https://www.w3schools.com/js">JavaScript Tutorial</a></li>
+<li><a href="https://www.w3schools.com/js" target="_new">JavaScript Tutorial</a></li>
 
-<li><a href="https://getbootstrap.com/docs/5.3/getting-started/introduction/">Bootstrap Tutorial</a></li>
+<li><a href="https://getbootstrap.com/docs/5.3/getting-started/introduction/" target="_new">Bootstrap Tutorial</a></li>
 
-<li><a  href="https://www.coingecko.com/en/api">CoinGecko API (Use referral code CGICSDISCOVER):</a></li>
+<li><a  href="https://www.coingecko.com/en/api" target="_new">CoinGecko API (Use referral code CGICSDISCOVER):</a></li>
 
 </ul>
 
