@@ -20,8 +20,8 @@ package icsdiscover.coingecko;
 
 import org.apache.struts2.junit.StrutsTestCase;
 
-import com.opensymphony.xwork2.ActionContext;
-import com.opensymphony.xwork2.ActionSupport;
+import org.apache.struts2.ActionContext;
+import org.apache.struts2.ActionSupport;
 
 public class CoinGeckoTestCase extends StrutsTestCase {
 

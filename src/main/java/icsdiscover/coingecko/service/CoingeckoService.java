@@ -81,4 +81,8 @@ public class CoingeckoService {
 
 		return isAvailable;
 	}
+
+	public static String[] getHeaderList() {
+		return HEADER_LIST;
+	}
 }

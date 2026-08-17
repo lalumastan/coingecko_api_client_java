@@ -21,7 +21,7 @@ package icsdiscover.coingecko;
 
 import java.util.List;
 
-import com.opensymphony.xwork2.ActionSupport;
+import org.apache.struts2.ActionSupport;
 
 import icsdiscover.coingecko.service.CoingeckoService;
 
@@ -64,5 +64,9 @@ public class CoinGeckoAction extends ActionSupport {
 
 	public List<List<String>> getCoinGeckoTableList() {
 		return CoingeckoService.getCoinGeckoTableList();
+	}
+
+	public String[] getHeaderList() {
+		return CoingeckoService.getHeaderList();
 	}
 }

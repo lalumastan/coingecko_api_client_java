@@ -1,5 +1,5 @@
 
-# How to Create SPA Crypto Market Watch Web Application using Java/JEE, Struts2, jQuery, CDN DataTables & CoinGecko API
+# How to Create SPA Crypto Market Watch Web Application using Java/Jakarta EE, Struts2, jQuery, CDN DataTables & CoinGecko API
 
 ### Workflow
 
@@ -13,11 +13,11 @@
 
 graph LR
 
-A((Download<br/>and Install<br/>Open JDK)) --> C
+A((Download<br/>and Install<br/>Open JDK 17+)) --> C
 
-B((Download<br/>and Unzip<br/>Apache Tomcat 9)) --> C
+B((Download<br/>and Unzip<br/>Apache Tomcat 11)) --> C
 
-C{Download and Install<br/>Eclipse JEE,<br/>Configure JDK and<br/>Tomcat 9 Server} --> D
+C{Download and Install<br/>Eclipse JEE,<br/>Configure JDK and<br/>Tomcat 11 Server} --> D
 
 D((Checkout<br/>'coingecko_api_client_java'<br/>code from Git)) --> E
 
@@ -33,9 +33,9 @@ E -- Test with<br/>InternetBrowser --> H{http://localhost:8080/coingecko_api_cli
 
 <ul>
 
-<li>Download Open JDK 19 <a href="https://jdk.java.net/java-se-ri/19" target="_new">here</a> and install</li>
+<li>Download Open JDK 17 or later <a href="https://jdk.java.net/java-se-ri/17" target="_new">here</a> and install &mdash; Struts 7.x requires Java 17+</li>
 
-<li>Download and Unzip Apache Tomcat 9 <a href="https://tomcat.apache.org/download-90.cgi" target="_new">here</a>, Add as a Server in Eclipse JEE IDE</li>
+<li>Download and Unzip Apache Tomcat 11 <a href="https://tomcat.apache.org/download-11.cgi" target="_new">here</a>, Add as a Server in Eclipse JEE IDE &mdash; Tomcat 9 no longer works since Struts 7 / Jakarta EE 10 requires Servlet API 6.0+, which only Tomcat 10.1+ implements</li>
 
 <li>Download Eclipse JEE IDE <a href="https://www.eclipse.org/downloads/packages/release/2022-12/r/eclipse-ide-enterprise-java-and-web-developers" target="_new">here</a>, configure JDK and install</li>
 
@@ -45,11 +45,15 @@ E -- Test with<br/>InternetBrowser --> H{http://localhost:8080/coingecko_api_cli
 
 <li>Compile and build the code using Eclipse by running Maven Test</li>
 
-<li>Run the development server using Eclipse</li>
+<li>Run the development server using Eclipse, or from the command line with <code>mvn org.eclipse.jetty.ee10:jetty-ee10-maven-plugin:run</code> (the plugin's Maven groupId changed with the move to Jetty 12's "ee10" environment, so the older <code>mvn jetty:run</code> shorthand may not resolve depending on your local Maven plugin registry &mdash; the fully-qualified goal above always works)</li>
 
 <li>Open <a href="http://localhost:8080/coingecko_api_client_java" target="_new">http://localhost:8080/coingecko_api_client_java</a> with your browser to see the result.</li>
 
 </ul>
+
+### Deploy with Docker
+
+The bundled <code>Dockerfile</code> now targets Tomcat 11 (Jakarta EE) instead of Tomcat 9 &mdash; build the WAR with <code>mvn package</code> first, then <code>docker build</code> as before.
 
 ### References
 
@@ -71,7 +75,7 @@ E -- Test with<br/>InternetBrowser --> H{http://localhost:8080/coingecko_api_cli
 
 <li><a href="https://getbootstrap.com/docs/5.3/getting-started/introduction/" target="_new">Bootstrap Tutorial</a></li>
 
-<li><a  href="https://www.coingecko.com/en/api" target="_new">CoinGecko API (Use referral code CGICSDISCOVER):</a></li>
+<li><a  href="https://www.coingecko.com/en/api" target="_new">CoinGecko API (Use referral code CGICSDISCOVER):</a></li>
 
 </ul>
 

@@ -1,28 +1,618 @@
-body {
-    background-image: url('images/ai.jpg');
+/* ============================================================
+   iCS Discover — Crypto Market Watch (Struts2)
+   Dark ink/teal/amber brand, IBM Plex fonts. Bootstrap (chrome
+   only, no .table usage) and DataTables (core, no jQuery UI
+   theme) stay loaded for their generated nav/search/sort/
+   pagination widgets to keep working; this file re-skins those
+   widgets rather than replacing them.
 
-    /* Background image is centered vertically and horizontally at all times */
-    background-position: center center;
+   NOTE: jQuery UI ("base" theme) is intentionally NOT loaded
+   (see template.jsp / coingecko.jsp). However, DataTables is
+   configured with datatablesTheme="jqueryui", which makes
+   DataTables' JS itself (not the missing theme CSS) tag every
+   data cell AND every pagination button with jQuery UI state
+   classes like .ui-state-default / .ui-state-hover /
+   .ui-state-active. Those classes are handled below, but are
+   scoped to the widgets they're meant for (pagination / filter
+   controls) so they can never dim actual table data again —
+   see the "jQuery UI state classes" section for the full
+   explanation.
+   ============================================================ */
 
-    /* Background image doesn't tile */
-    background-repeat: no-repeat;
+:root {
+  --bg: #0e1613;
+  --bg-glow: #14231d;
+  --surface: #131c18;
+  --surface-2: #182420;
+  --border: #263530;
+  --border-strong: #3a4b44;
+  --text: #eaefec;
+  --text-dim: #93a39b;
+  --text-faint: #5e6d66;
+  
+  --accent: #4fb6a8;
+  --accent-soft: rgba(79, 182, 168, 0.13);
+  --accent-strong: #6fd2c4;
+  --accent-2: #e3a23c;
+  --accent-2-soft: rgba(227, 162, 60, 0.13);
 
-    /* Background image is fixed in the viewport so that it doesn't move when
-the content's height is greater than the image's height */
-    background-attachment: fixed;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --font-sans: "IBM Plex Sans", -apple-system, "Segoe UI", sans-serif;
 
-    /* This is what makes the background image rescale based
-on the container's size */
-    background-size: cover;
-
-    /* Set a background color that will be displayed
-while the background image is loading */
-    background-color: #033761;
+  --radius: 10px;
+  --radius-sm: 6px;
+  --shadow-panel: 0 20px 60px -25px rgba(0, 0, 0, 0.6);
 }
 
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(ellipse 900px 500px at 50% -10%, var(--bg-glow) 0%, transparent 60%),
+    repeating-linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.014) 0px,
+      rgba(255, 255, 255, 0.014) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+  color: var(--text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-mono);
+}
+
+a { color: inherit; }
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* icon cell image, referenced directly by coingecko.jsp rows */
 .center {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
-  }
+  display: block;
+  margin: 0 auto;
+  width: 26px;
+  height: 26px;
+  padding: 3px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  object-fit: contain;
+}
+
+/* ---------- brand chrome ---------- */
+
+.icsHeader {
+  background: rgba(14, 22, 19, 0.9);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(10px);
+}
+
+.icsHeader .navbar {
+  background: transparent;
+  padding: 0;
+}
+
+.icsHeaderInner {
+  padding: 12px 8px;
+}
+
+.icsBrand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.icsBrandMark {
+  width: 28px;
+  height: 28px;
+  border-radius: 7px;
+  border: 1px solid var(--border-strong);
+  object-fit: cover;
+}
+
+.icsBrandName { color: var(--text); }
+.icsBrandName span { color: var(--text-faint); font-weight: 400; }
+
+.icsNavToggle {
+  border-color: var(--border);
+  background: transparent;
+}
+
+.icsNav .nav-link {
+  font-family: var(--font-sans);
+  font-size: 13.5px;
+  color: var(--text-dim) !important;
+}
+
+.icsNav .nav-link:hover {
+  color: var(--accent) !important;
+}
+
+.icsWrap {
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.icsHero { padding: 40px 0 8px; }
+
+.icsEyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin-bottom: 16px;
+}
+
+.icsEyebrowDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+  display: inline-block;
+}
+
+.icsH1 {
+  font-size: clamp(24px, 3.4vw, 32px);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  margin: 0;
+}
+
+.icsLede {
+  margin-top: 12px;
+  max-width: 62ch;
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--text-dim);
+}
+
+.icsFooter {
+  margin-top: 40px;
+  border-top: 1px solid var(--border);
+  padding: 22px 0 30px;
+}
+
+.icsFooterInner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-size: 12.5px;
+  color: var(--text-faint);
+}
+
+.icsFooterInner a { color: var(--text-faint); }
+.icsFooterInner a:hover { color: var(--accent); }
+
+/* ---------- market panel ---------- */
+
+.icsPanel {
+  margin: 24px 0 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow-panel);
+  overflow: hidden;
+}
+
+@media (max-width: 640px) {
+  .icsWrap { padding: 0 16px; }
+  .icsHero { padding: 28px 0 4px; }
+  .icsPanelHead { padding: 12px 14px; }
+  .dataTables_filter input { min-width: 140px; }
+  table.dataTable tbody td,
+  table.dataTable thead th { padding: 8px 8px !important; font-size: 12.5px; }
+}
+
+.icsPanelHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface-2);
+}
+
+.icsPanelTitle {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--text);
+}
+
+.icsPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  padding: 6px 11px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-dim);
+}
+
+.icsPillDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  display: inline-block;
+}
+
+@keyframes icsPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+.icsPillDot.icsLive { animation: icsPulse 2s ease-in-out infinite; }
+
+.icsTableScroll {
+  padding: 10px 14px 14px;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-strong) transparent;
+}
+
+.icsTableScroll::-webkit-scrollbar {
+  height: 8px;
+}
+
+.icsTableScroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.icsTableScroll::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 999px;
+}
+
+.icsTableScroll::-webkit-scrollbar-thumb:hover {
+  background: var(--text-faint);
+}
+
+/* ============================================================
+   DataTables chrome (search box, length select, info text)
+   ============================================================ */
+
+.dataTables_wrapper {
+  font-family: var(--font-sans);
+  color: var(--text-dim);
+  font-size: 13px;
+}
+
+.dataTables_length label,
+.dataTables_filter label {
+  color: var(--text-dim);
+  font-size: 13px;
+}
+
+.dataTables_length select,
+.dataTables_filter input {
+  background-color: var(--surface-2) !important;
+  border: 1px solid var(--border-strong) !important;
+  color: var(--text) !important;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  padding: 5px 9px;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.dataTables_length select:focus,
+.dataTables_filter input:focus {
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.dataTables_filter input {
+  min-width: 220px;
+}
+
+.dataTables_info {
+  color: var(--text-faint);
+  font-size: 12.5px;
+}
+
+/* ============================================================
+   jQuery UI state classes (.ui-state-default / -hover / -active)
+
+   ROOT CAUSE OF THE DIM-TABLE BUG: with datatablesTheme="jqueryui",
+   DataTables' own JS applies .ui-state-default / .ui-state-hover /
+   .ui-state-active to EVERY <td> in the body, not just to the
+   pagination buttons those classes were designed for. A bare,
+   unscoped ".ui-state-default { color: var(--text-dim) !important }"
+   rule therefore dims all table data at all times (only lighting up
+   on row :hover), and a previous attempt to patch this by re-declaring
+   color on tbody td with higher specificity was fragile and still
+   depended on winning a specificity fight against a live !important
+   rule for every possible DOM shape.
+
+   FIX: scope every .ui-state-* rule to the widgets that actually use
+   them (pagination + the widget-header chrome) with a :not() guard
+   that excludes table cells outright. That way these classes can
+   land on <td> elements (DataTables will keep adding them) without
+   ever being able to style them — table cell color is governed
+   solely by the "table.dataTable tbody td" rule further down.
+   ============================================================ */
+
+.ui-widget, .ui-widget input, .ui-widget select, .ui-widget button {
+  font-family: var(--font-sans);
+}
+
+.dataTables_wrapper .ui-widget-header {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+}
+
+.ui-state-default:not(table.dataTable td):not(table.dataTable th),
+.ui-widget-content .ui-state-default:not(table.dataTable td):not(table.dataTable th) {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+}
+
+.ui-state-hover:not(table.dataTable td):not(table.dataTable th),
+.ui-widget-content .ui-state-hover:not(table.dataTable td):not(table.dataTable th) {
+  background: var(--surface-2);
+  border-color: var(--border-strong);
+  color: var(--text);
+}
+
+.ui-state-active:not(table.dataTable td):not(table.dataTable th),
+.ui-widget-content .ui-state-active:not(table.dataTable td):not(table.dataTable th),
+.ui-state-highlight:not(table.dataTable td):not(table.dataTable th) {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  color: var(--accent-strong);
+}
+
+.ui-icon {
+  filter: invert(72%) sepia(9%) saturate(400%) hue-rotate(120deg) brightness(95%);
+}
+
+/* ============================================================
+   Pagination
+
+   BUG: the pagination buttons only ever had explicit colors for
+   their .current and .disabled states. The default (idle) state —
+   i.e. every page number except the one you're on — had no color,
+   border, or background declared here at all, so it fell through
+   to DataTables' own baseline styling (a near-black gray meant for
+   light backgrounds), which is effectively invisible against this
+   dark theme. Idle buttons now get an explicit, readable style
+   that matches the rest of the UI, with clear hover/focus states.
+   ============================================================ */
+
+.dataTables_paginate {
+  padding-top: 4px;
+}
+
+.dataTables_paginate .paginate_button {
+  background: transparent !important;
+  border: 1px solid var(--border) !important;
+  color: var(--text-dim) !important;
+  border-radius: var(--radius-sm) !important;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  margin: 0 2px !important;
+  padding: 4px 10px !important;
+  min-width: 30px;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.dataTables_paginate .paginate_button:hover:not(.disabled):not(.current) {
+  background: var(--surface-2) !important;
+  border-color: var(--border-strong) !important;
+  color: var(--text) !important;
+}
+
+.dataTables_paginate .paginate_button:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--accent-soft);
+  border-color: var(--accent) !important;
+}
+
+.dataTables_paginate .paginate_button.current,
+.dataTables_paginate .paginate_button.current:hover {
+  background: var(--accent-soft) !important;
+  border-color: var(--accent) !important;
+  color: var(--accent-strong) !important;
+  font-weight: 600;
+}
+
+.dataTables_paginate .paginate_button.disabled,
+.dataTables_paginate .paginate_button.disabled:hover {
+  color: var(--text-faint) !important;
+  border-color: var(--border) !important;
+  background: transparent !important;
+  cursor: default;
+}
+
+/* the "…" ellipsis DataTables inserts between page-number gaps —
+   it renders as a .paginate_button too, but shouldn't look
+   clickable */
+.dataTables_paginate .paginate_button.disabled:not(.previous):not(.next) {
+  border-color: transparent !important;
+}
+
+/* ============================================================
+   Table
+   ============================================================ */
+
+table.dataTable {
+  width: 100% !important;
+  color: var(--text);
+  background: transparent;
+  border-collapse: separate !important;
+}
+
+table.dataTable thead th {
+  background: var(--surface-2) !important;
+  color: var(--text-dim) !important;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--border) !important;
+  padding: 10px 12px !important;
+  white-space: nowrap;
+}
+
+table.dataTable thead th.sorting,
+table.dataTable thead th.sorting_asc,
+table.dataTable thead th.sorting_desc {
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+table.dataTable thead th.sorting:hover {
+  color: var(--text) !important;
+}
+
+table.dataTable thead th.sorting_asc,
+table.dataTable thead th.sorting_desc {
+  color: var(--accent-strong) !important;
+}
+
+/* numeric columns (Price/High/Low/Day Chg %) read like a financial table:
+   right-aligned, tabular figures, monospace for easy scanning/comparison */
+table.dataTable th:nth-child(4),
+table.dataTable th:nth-child(5),
+table.dataTable th:nth-child(6),
+table.dataTable th:nth-child(7) {
+  text-align: right;
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+table.dataTable tbody td:nth-child(2) {
+  font-family: var(--font-mono);
+  color: var(--text-dim);
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+table.dataTable tbody td:nth-child(3) {
+  font-weight: 500;
+}
+
+table.dataTable tfoot th {
+  background: transparent !important;
+  color: var(--text-faint) !important;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-top: 1px solid var(--border) !important;
+  padding: 10px 12px !important;
+}
+
+/* Base color lives here, unconditionally, so table data is always
+   legible regardless of which state classes DataTables happens to
+   add to a cell (see the "jQuery UI state classes" note above).
+
+   Font-weight/size are bumped slightly above the wrapper default:
+   light, regular-weight (400) text at 13px on a very dark background
+   renders with thin, sparse anti-aliased strokes that read as faint
+   or "washed out" to the eye even though the color itself is at full
+   brightness/contrast — DevTools' computed color won't show this,
+   it's a rendering-weight problem, not a color problem. 500 weight
+   plus a hair more size gives each glyph enough pixel coverage to
+   read as solid rather than thin. */
+table.dataTable tbody td {
+  color: var(--text-faint);
+  border-top: 1px solid var(--border) !important;
+  padding: 10px 12px !important;
+  font-size: 13.5px;
+  font-weight: 500;
+  background: transparent !important;
+  transition: background 0.12s ease;
+}
+
+table.dataTable.stripe tbody tr.odd td {
+  background: rgba(255, 255, 255, 0.025) !important;
+}
+
+table.dataTable tbody tr:hover td {
+  background: var(--accent-soft) !important;
+}
+
+table.dataTable tbody tr:hover td:first-child {
+  box-shadow: inset 3px 0 0 var(--accent);
+}
+
+/* day-change badges — added client-side (see coingecko.jsp) once the raw
+   percentage text in the last column is known, so gains/losses are
+   scannable at a glance without touching the server-side data contract */
+.chg-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.chg-badge::before {
+  content: "";
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+}
+
+.chg-pos {
+  color: #6fe3af;
+  background: rgba(111, 227, 175, 0.12);
+}
+
+.chg-pos::before {
+  border-bottom: 6px solid #6fe3af;
+}
+
+.chg-neg {
+  color: #f6836f;
+  background: rgba(246, 131, 111, 0.12);
+}
+
+.chg-neg::before {
+  border-top: 6px solid #f6836f;
+}
+
+.chg-flat {
+  color: var(--text-faint);
+  background: rgba(255, 255, 255, 0.04);
+}
